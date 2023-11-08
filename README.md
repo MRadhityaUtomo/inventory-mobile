@@ -67,7 +67,7 @@ SnackBar: Pop-up pesan yang muncul untuk memberikan umpan balik singkat setelah 
 
 - Create new folder untuk menampung proyek flutter baru :
 `flutter assignments` -> Di dalamnya, buka cmd folder dan run command berikut :
-	* flutter create inventory_mobile 
+	* `flutter create inventory_mobile`` 
 ini akan membuat file - file proyek baru secara otomatis 
 
 ```
@@ -93,6 +93,8 @@ menu.dart akan digunakan sebagai tempat dimana interface menu diletakkan, main a
 - Ubah main.dart menjadi
 
 ```dart
+// Import 
+
 import 'package:flutter/material.dart';
 import 'package:inventory_mobile/menu.dart';
 
@@ -104,12 +106,12 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { // Tambahkan 
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
 
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo), //Default color scheme, will be overridden by menu.dart
         useMaterial3: true,
       ),
       home: MyHomePage(),
@@ -121,14 +123,17 @@ class MyApp extends StatelessWidget {
 dan menu.dart menjadi :
 
 ```dart
+// Tambahkan import
+
 import 'package:flutter/material.dart';
-import 'package:inventory_mobile/menu.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
 
   final List<ShopItem> items = [
-      ShopItem.lihatItem, // Use the predefined instances with different colors
+
+    // Panggil tiap constructor yang sudah kita define di bawah
+      ShopItem.lihatItem, 
       ShopItem.tambahItem,
       ShopItem.logout,
   ];
@@ -178,23 +183,25 @@ class MyHomePage extends StatelessWidget {
 }
 
 class ShopItem {
+  
+  // Define attribute untuk tiap tombol yang akan di buat
   final String name;
   final IconData icon;
   final Color color;
 
-  // Constructor
+  // Constructor Tombol
   ShopItem(this.name, this.icon, this.color);
 
-  // Define setiap constructor dengan benar sesuai format. Bedakan tiap warna
+  // Define setiap constructor dengan benar sesuai format. Bedakan tiap warna dan attribute lainnya untuk setiap tombol
   static final ShopItem lihatItem = ShopItem("Lihat Item", Icons.checklist, Colors.cyan[400]!);
   static final ShopItem tambahItem = ShopItem("Tambah Item", Icons.add_box, Colors.cyan[600]!);
-  static final ShopItem logout = ShopItem("Logout", Icons.accessible_forward_sharp, Colors.cyan[800]!);
+  static final ShopItem logout = ShopItem("Logout", Icons.run_circle_outlined, Colors.cyan[800]!);
 }
 
 class ShopCard extends StatelessWidget {
   final ShopItem item;
 
-  const ShopCard(this.item, {super.key}); // Constructor
+  const ShopCard(this.item, {super.key}); // Constructor Snackbar
 
   @override
   Widget build(BuildContext context) {
@@ -207,7 +214,7 @@ class ShopCard extends StatelessWidget {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(
-                content: Text("Kamu telah menekan tombol ${item.name}!")));
+                content: Text("Kamu telah menekan tombol ${item.name}!"))); // Snack bar memunculkan text sesuai nama item/ tombol yang di tekan
         },
         child: Container(
           // Container untuk menyimpan Icon dan Text

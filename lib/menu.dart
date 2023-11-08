@@ -22,6 +22,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.amber[200]!,
         title: const Text(
           'Yharnam.OS',
         ),
@@ -76,7 +77,7 @@ class ShopItem {
 
   static final ShopItem lihatItem = ShopItem("Lihat Item", Icons.checklist, Colors.cyan[400]!);
   static final ShopItem tambahItem = ShopItem("Tambah Item", Icons.add_box, Colors.cyan[600]!);
-  static final ShopItem logout = ShopItem("Logout", Icons.accessible_forward_sharp, Colors.cyan[800]!);
+  static final ShopItem logout = ShopItem("Logout", Icons.run_circle_outlined, Colors.cyan[800]!);
 }
 
 class ShopCard extends StatelessWidget {

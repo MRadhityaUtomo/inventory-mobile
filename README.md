@@ -287,18 +287,35 @@ Navigator.pushReplacement(
 
 2. Jelaskan masing-masing layout widget pada Flutter dan konteks penggunaannya masing-masing!
 
-- Container
-- Row and Column
+- Container :
+  * Sebuah box yang dapat diisi dengan widget lain
+  * Mmeliki properti lain untuk styling seperti margin dan decoration
+- Row and Column : 
+  * "flex widget" yang dapat mengurutkan isinya/childnya secara vertikal atau horizontal (row/column)
 - ListView
+  * Menampilkan child sebagai widget yang dapat discroll
+  * Dibuat secara dinamik menggunakan function builder, mengurangi memory consumption 
 - GridView
+  * Seperti Listview
+  * Scrollable grid of widgets
+  * Childrennya dapat diarrange seperti 2 dimensional array
 - Stack
+  * Children ditumpuk di atas satu sama lain
+  * Dapat diposisikan relatif edges stack atau satu sama lain
 
 <br>
 
 3. Sebutkan apa saja elemen input pada form yang kamu pakai pada tugas kali ini dan jelaskan mengapa kamu menggunakan elemen input tersebut!
 
 - TextFormField
+  * Widget yang menyediakan kolom input teks.
+  * Biasanya digunakan untuk menerima input berupa text.
+  * Dapat didefinisikan kontrol (controllers) untuk mengelola status input dan menggunakan callback untuk menangani perubahan atau pengiriman formulir.
+
 - ElevatedButton
+  * Tombol/button yang tampak memiliki bayangan (elevated)
+  * `child` dapat berisi widget lagi, dapat berupa text atau semacamnya
+  * `onPressed` dapat diisi dengan fungsi ketika tombol dipencet
 
 <br>
 
@@ -308,24 +325,24 @@ Clean architecture pada flutter, secara singkat, merupakan metode penerapan prin
 
 Pembagian :
 
-- Domain
+- Domain : Berisi business logic aplikasi, ditulis full dalam dart tanpa ada elemen flutter, digunakan agar lebih mudah melakukan migrasi antar platform.
   * Entities
   * Usecases
   * Repositories
 
-- App
+- App : Perantara yang menyambungkan layer lain dengan Domain.
   * View
   * Controller
   * Presenter
   * Extra
 
-- Data
+- Data : Data retrival dari database.
   * Repositories
   * Models
   * Mappers
   * Extra
 
-- Device
+- Device : Berkomunikasi langsung dengan platform Android dan IOS, bertanggungjawab atas fungsional native seperti GPS.
   * Devices
   * Extra
 

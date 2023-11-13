@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inventory_mobile/screens/item_show.dart';
 import 'package:inventory_mobile/screens/menu.dart';
 import 'package:inventory_mobile/screens/item_form.dart';
 // TODO: Impor halaman ShopFormPage jika sudah dibuat
@@ -51,23 +52,39 @@ class LeftDrawer extends StatelessWidget {
                       builder: (context) => MyHomePage(),
                     ));
               },
-              ),
-              ListTile(
-              leading: const Icon(Icons.add_shopping_cart),
-              title: const Text('Tambah Produk'),
-              // Bagian redirection ke ShopFormPage
-              onTap: () {
-                /*
-                TODO: Buatlah routing ke ShopFormPage di sini,
-                setelah halaman ShopFormPage sudah dibuat.
-                */
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ShopFormPage(),
-                    ));
-              },
-              ),
+            ),
+            ListTile(
+            leading: const Icon(Icons.add_shopping_cart),
+            title: const Text('Tambah Produk'),
+            // Bagian redirection ke ShopFormPage
+            onTap: () {
+              /*
+              TODO: Buatlah routing ke ShopFormPage di sini,
+              setelah halaman ShopFormPage sudah dibuat.
+              */
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ShopFormPage(),
+                  ));
+            },
+            ),
+             ListTile(
+            leading: const Icon(Icons.remove_red_eye_rounded),
+            title: const Text('Open Inventory'),
+            // Bagian redirection ke ShopFormPage
+            onTap: () {
+              /*
+              TODO: Buatlah routing ke ShopFormPage di sini,
+              setelah halaman ShopFormPage sudah dibuat.
+              */
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ItemListPage(),
+                  ));
+            },
+            ),
         ],
       ),
     );

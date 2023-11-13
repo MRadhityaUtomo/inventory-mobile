@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_mobile/widgets/left_drawer.dart';
+import 'package:inventory_mobile/widgets/item_card.dart';
+
+
 // TODO: Impor drawer yang sudah dibuat sebelumnya
 
 class ShopFormPage extends StatefulWidget {
@@ -12,9 +15,9 @@ class ShopFormPage extends StatefulWidget {
 class _ShopFormPageState extends State<ShopFormPage> {
   final _formKey = GlobalKey<FormState>();
   String _name = "";
+  int _price = 0;
   int _amount = 0;
   String _description = "";
-  List<Map<String, dynamic>> itemList = [];
   
     @override
     Widget build(BuildContext context) {
@@ -58,7 +61,35 @@ class _ShopFormPageState extends State<ShopFormPage> {
             },
           ),
         ),
-        Padding(
+  Padding(
+  padding: const EdgeInsets.all(8.0),
+  child: TextFormField(
+    decoration: InputDecoration(
+      hintText: "Price",
+      labelText: "Price",
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(5.0),
+      ),
+    ),
+    // TODO: Tambahkan variabel yang sesuai
+    onChanged: (String? value) {
+      setState(() {
+        _amount = int.parse(value!);
+      });
+    },
+    validator: (String? value) {
+      if (value == null || value.isEmpty) {
+        return "Price cannot be empty!";
+      }
+      if (int.tryParse(value) == null) {
+        return "Price is a number...";
+      }
+      return null;
+    },
+  ),
+),
+
+  Padding(
   padding: const EdgeInsets.all(8.0),
   child: TextFormField(
     decoration: InputDecoration(
@@ -121,24 +152,21 @@ Padding(
           onPressed: () {
             if (_formKey.currentState!.validate()) {
               setState(() {
-                itemList.add({
-                  'Nama': _name,
-                  'Amount': _amount,
-                  'Deskripsi': _description,
-                });
+                itemList.add(Item(_name, _price, _amount, _description));
               });
               showDialog(
                 context: context,
                 builder: (context) {
                   return AlertDialog(
-                    title: const Text('Produk berhasil tersimpan'),
+                    title: const Text('Item Saved'),
                     content: SingleChildScrollView(
                       child: Column(
                         crossAxisAlignment:
                             CrossAxisAlignment.start,
                         children: [
                           Text('Nama: $_name'),
-                          Text('Harga: $_amount'),
+                          Text('Harga: $_price'),
+                          Text('Amount: $_amount'),
                           Text('Deskripsi: $_description'),
                           // TODO: Munculkan value-value lainnya
                         ],
@@ -155,8 +183,8 @@ Padding(
                   );
                 },
               );
+              _formKey.currentState!.reset();
             }
-            // _formKey.currentState!.reset();
           },
           child: const Text(
         "Save",

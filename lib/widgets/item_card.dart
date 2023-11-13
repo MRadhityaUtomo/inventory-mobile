@@ -1,5 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_mobile/screens/item_form.dart';
+import 'package:inventory_mobile/screens/item_show.dart';
+
+
+List<Item> itemList = [];
+
+class Item {
+  String name = "";
+  int price = 0;
+  int amount = 0;
+  String description = "";
+  String purchasedFrom = "";
+
+  Item(
+      this.name, this.price, this.amount, this.description);
+}
+
 
 class ShopItem {
   final String name;
@@ -37,9 +53,16 @@ class ShopCard extends StatelessWidget {
               Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ShopFormPage(),
+                      builder: (context) => const ShopFormPage(),
                     ));
             }
+            else if (item.name == "Lihat Item") {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ItemListPage(),
+                ));
+          }
 
         },
         child: Container(

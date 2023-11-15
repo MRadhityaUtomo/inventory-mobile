@@ -65,8 +65,8 @@ class _ShopFormPageState extends State<ShopFormPage> {
   padding: const EdgeInsets.all(8.0),
   child: TextFormField(
     decoration: InputDecoration(
-      hintText: "Price",
-      labelText: "Price",
+      hintText: "Omen",
+      labelText: "Omen",
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(5.0),
       ),
@@ -79,10 +79,10 @@ class _ShopFormPageState extends State<ShopFormPage> {
     },
     validator: (String? value) {
       if (value == null || value.isEmpty) {
-        return "Price cannot be empty!";
+        return "Omen cannot be empty!";
       }
       if (int.tryParse(value) == null) {
-        return "Price is a number...";
+        return "Omen is a number...";
       }
       return null;
     },

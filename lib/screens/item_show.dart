@@ -45,7 +45,7 @@ class _ItemListPageState extends State<ItemListPage> {
                       subtitle: Container(
                         margin: const EdgeInsets.only(left: 22.0),
                         child: Text(
-                          """Price: ${itemList[idx].price}
+                          """omen: ${itemList[idx].omen}
 Amount: ${itemList[idx].amount}
 Description: ${itemList[idx].description}
 """,

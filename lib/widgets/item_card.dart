@@ -7,13 +7,12 @@ List<Item> itemList = [];
 
 class Item {
   String name = "";
-  int price = 0;
+  int omen = 0;
   int amount = 0;
   String description = "";
-  String purchasedFrom = "";
 
   Item(
-      this.name, this.price, this.amount, this.description);
+      this.name, this.omen, this.amount, this.description);
 }
 
 

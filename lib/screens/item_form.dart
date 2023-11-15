@@ -15,7 +15,7 @@ class ShopFormPage extends StatefulWidget {
 class _ShopFormPageState extends State<ShopFormPage> {
   final _formKey = GlobalKey<FormState>();
   String _name = "";
-  int _price = 0;
+  int _omen = 0;
   int _amount = 0;
   String _description = "";
   
@@ -152,7 +152,7 @@ Padding(
           onPressed: () {
             if (_formKey.currentState!.validate()) {
               setState(() {
-                itemList.add(Item(_name, _price, _amount, _description));
+                itemList.add(Item(_name, _omen, _amount, _description));
               });
               showDialog(
                 context: context,
@@ -165,7 +165,7 @@ Padding(
                             CrossAxisAlignment.start,
                         children: [
                           Text('Nama: $_name'),
-                          Text('Harga: $_price'),
+                          Text('Omen: $_omen'),
                           Text('Amount: $_amount'),
                           Text('Deskripsi: $_description'),
                           // TODO: Munculkan value-value lainnya

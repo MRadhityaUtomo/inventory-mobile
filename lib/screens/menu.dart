@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:shopping_list/shoplist_form.dart';
+// import 'package:inventory_mobile/shoplist_form.dart';
 import 'package:inventory_mobile/widgets/item_card.dart';
 import 'package:inventory_mobile/widgets/left_drawer.dart';
 
@@ -7,9 +7,9 @@ class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
 
   final List<ShopItem> items = [
-      ShopItem.lihatItem, // Use the predefined instances with different colors
-      ShopItem.tambahItem,
-      ShopItem.logout,
+    ShopItem("Lihat Item", Icons.checklist),
+    ShopItem("Tambah Item", Icons.add_shopping_cart),
+    ShopItem("Logout", Icons.logout),
   ];
 
   // This widget is the home page of your application. It is stateful, meaning
@@ -25,12 +25,14 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.amber[200]!,
         title: const Text(
-          'Yharnam.OS',
-        ),
+          'Shopping List',
+        ), 
+            backgroundColor: Colors.indigo,
+            foregroundColor: Colors.white,
       ),
-       drawer: const LeftDrawer(),
+      // Masukkan drawer sebagai parameter nilai drawer dari widget Scaffold
+            drawer: const LeftDrawer(),
       body: SingleChildScrollView(
         // Widget wrapper yang dapat discroll
         child: Padding(
@@ -42,7 +44,7 @@ class MyHomePage extends StatelessWidget {
                 padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
                 // Widget Text untuk menampilkan tulisan dengan alignment center dan style yang sesuai
                 child: Text(
-                  '✦ Inventory ✦', // Text yang menandakan toko
+                  'PBP Shop', // Text yang menandakan toko
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,
@@ -71,4 +73,3 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
-

@@ -69,7 +69,7 @@ class LeftDrawer extends StatelessWidget {
                   ));
             },
             ),
-             ListTile(
+            ListTile(
             leading: const Icon(Icons.remove_red_eye_rounded),
             title: const Text('Open Inventory'),
             // Bagian redirection ke ShopFormPage
@@ -85,6 +85,17 @@ class LeftDrawer extends StatelessWidget {
                   ));
             },
             ),
+            ListTile(
+            leading: const Icon(Icons.shopping_basket),
+            title: const Text('Daftar Item'),
+            onTap: () {
+                // Route menu ke halaman produk
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ItemListPage()),
+                );
+            },
+        ),
         ],
       ),
     );

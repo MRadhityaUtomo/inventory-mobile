@@ -73,7 +73,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     return; // Stop eksekusi jika input tidak valid
                   }
 
-                  final response = await request.post("http://127.0.0.1:8000/", {
+                  final response = await request.post("http://127.0.0.1:8000/auth/register/", {
                   'username': username,
                   'password': password,
                   });

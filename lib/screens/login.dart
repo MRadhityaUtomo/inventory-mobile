@@ -2,6 +2,7 @@ import 'package:inventory_mobile/screens/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:inventory_mobile/screens/register.dart';
 
 void main() {
     runApp(const LoginApp());
@@ -37,9 +38,16 @@ class _LoginPageState extends State<LoginPage> {
     Widget build(BuildContext context) {
         final request = context.watch<CookieRequest>();
         return Scaffold(
-            appBar: AppBar(
-                title: const Text('Login'),
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            title: const Center(
+              child: Text(
+                'Login',
+              ),
             ),
+            backgroundColor: Colors.indigo,
+            foregroundColor: Colors.white,
+          ),
             body: Container(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -61,14 +69,24 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         const SizedBox(height: 24.0),
                         ElevatedButton(
+                          onPressed: () {
+                              _usernameController.clear();
+                              _passwordController.clear();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const RegistrationPage(),
+                                ),
+                              );
+                          },
+                          child: const Text('Register'),
+                        ),
+                        const SizedBox(height: 20),
+                        ElevatedButton(
                             onPressed: () async {
                                 String username = _usernameController.text;
                                 String password = _passwordController.text;
 
-                                // Cek kredensial
-                                // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
-                                // Untuk menyambungkan Android emulator dengan Django pada localhost, [DONE]
-                                // gunakan URL http://10.0.2.2/ 
                                 final response = await request.login("http://127.0.0.1:8000/auth/login/", {
                                 'username': username,
                                 'password': password,

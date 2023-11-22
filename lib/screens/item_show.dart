@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:inventory_mobile/models/item.dart';
+import 'package:inventory_mobile/screens/item_detail.dart';
 import 'package:inventory_mobile/widgets/left_drawer.dart';
 
 class ItemListPage extends StatefulWidget {
@@ -85,6 +86,17 @@ Widget build(BuildContext context) {
                                         "${snapshot.data![index].fields.description}"),
                                     const SizedBox(height: 10),
                                     Text("${snapshot.data![index].fields.amount}"),
+                                    ElevatedButton(
+                                        onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => DetailItemPage(item: snapshot.data![index]),
+                                          ),
+                                        );
+                                      },
+                                      child: const Text('Item Details'),
+                                    ),
                                 ],
                                 ),
                             ));

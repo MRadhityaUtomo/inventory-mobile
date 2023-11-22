@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'package:inventory_mobile/models/item.dart';
 import 'package:inventory_mobile/screens/item_detail.dart';
 import 'package:inventory_mobile/widgets/left_drawer.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 class ItemListPage extends StatefulWidget {
     const ItemListPage({Key? key}) : super(key: key);
@@ -13,37 +15,33 @@ class ItemListPage extends StatefulWidget {
 }
 
 class _itemPageState extends State<ItemListPage> {
-Future<List<Item>> fetchitem() async {
-    // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
-    var url = Uri.parse(
-        'http://127.0.0.1:8000/json/');
-    var response = await http.get(
-        url,
-        headers: {"Content-Type": "application/json"},
-    );
+ Future<List<Item>> fetchItem(CookieRequest request) async {
+  final response = await request.postJson(
+                                "http://127.0.0.1:8000/get-item/",
+                                jsonEncode(<String, String>{
+                                    'name':'bait',
+                                }));
 
-    // melakukan decode response menjadi bentuk json
-    var data = jsonDecode(utf8.decode(response.bodyBytes));
-
-    // melakukan konversi data json menjadi object item
-    List<Item> list_item = [];
-    for (var d in data) {
+    // melakukan konversi data json menjadi object Product
+    List<Item> list_product = [];
+    for (var d in response) {
         if (d != null) {
-            list_item.add(Item.fromJson(d));
+            list_product.add(Item.fromJson(d));
         }
     }
-    return list_item;
+    return list_product;
 }
 
 @override
 Widget build(BuildContext context) {
+     final request = context.watch<CookieRequest>();
     return Scaffold(
         appBar: AppBar(
         title: const Text('Item'),
         ),
         drawer: const LeftDrawer(),
         body: FutureBuilder(
-            future: fetchitem(),
+            future: fetchItem(request),
             builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.data == null) {
                     return const Center(child: CircularProgressIndicator());
